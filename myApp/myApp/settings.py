@@ -23,6 +23,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'rest_framework',
     'myApp',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'django.contrib.admin', # we arw used this app fro auth
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -30,6 +32,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REST_FRAMEWORK = {
+   'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+       'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,7 +82,7 @@ WSGI_APPLICATION = 'myApp.wsgi.application'
 
 DATABASES = {
     'default': {
-          'ENGINE': 'django.db.backends.mysql',
+       'ENGINE': 'django.db.backends.mysql',
         'NAME': 'db_2',                 # The name of your database
         'USER': 'user2',                 # Your MySQL username
         'PASSWORD': 'bayan.alallan2024', # Your MySQL password
